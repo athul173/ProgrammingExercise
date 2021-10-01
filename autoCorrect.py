@@ -7,50 +7,50 @@ chunks = pd.read_csv('GT3X+ (01 day)RAW.csv',
                      iterator=True, chunksize=300, header=None)
 
 
-def thresholdFinders():
+def threshold_finder():
     #combinedstdarray = [[0, 0, 0]]
     #modarray = [[0]]
-    maxthreshold = [[0]]
+    max_threshold = [[0]]
     for chunk in chunks:
-        xstd = pd.DataFrame.mean(chunk[0])
-        ystd = pd.DataFrame.mean(chunk[1])
-        zstd = pd.DataFrame.mean(chunk[2])
-        print('Values area: ' + str(xstd), str(ystd), str(zstd))
-        windowrep = max(xstd, ystd, zstd)
+        x_std = pd.DataFrame.mean(chunk[0])
+        y_std = pd.DataFrame.mean(chunk[1])
+        z_std = pd.DataFrame.mean(chunk[2])
+        print('Values area: ' + str(x_std), str(y_std), str(z_std))
+        windowrep = max(x_std, y_std, z_std)
         print('The rep is : ' + str(windowrep))
-    # if xstd < threshold and ystd < threshold and zstd < threshold:
+    # if x_std < threshold and y_std < threshold and z_std < threshold:
         # for i in chunk.itertuples():
         #     mod = math.sqrt(math.pow(
         #         i[1], 2) + math.pow(i[2], 2) + math.pow(i[3], 2))
         #     modarray.append([mod])
-        #combinedstdarray.append([xstd, ystd, zstd])
-        maxthreshold.append([windowrep])
+        #combinedstdarray.append([x_std, y_std, z_std])
+        max_threshold.append([windowrep])
 
-    print(*maxthreshold)
-    print("Maximum threshold is: " + str(max(maxthreshold)))
-    # plotarray = np.array(modarray[1:])
-    # plt.plot(plotarray, 'o')
+    print(*max_threshold)
+    print("Maximum threshold is: " + str(max(max_threshold)))
+    # plot_array = np.array(modarray[1:])
+    # plt.plot(plot_array, 'o')
     # plt.xlabel('Time')
     # plt.ylabel('|Acceleration|')
     # plt.show()
 
 
-def pyplotter():
+def py_plotter():
     # chunks.plot()
     # plt.show()
-    initialarray = [[0, 0]]
+    initial_array = [[0, 0]]
     for chunk in chunks.itertuples():
         print(chunk)
         y = math.sqrt(math.pow(
             chunk[1], 2) + math.pow(chunk[2], 2) + math.pow(chunk[3], 2))
     # adder = pd.DataFrame([[chunk[0], y]], columns=["Time", "Acceleration"])
-        initialarray.append([chunk[0], y])
+        initial_array.append([chunk[0], y])
     #df.append(adder, ignore_index=True)
 
     #df = pd.DataFrame({"Time": b[:, 0], "Acceleration": b[:, 1]})
     # print(df)
-    plotarray = np.array(initialarray)
-    plt.plot(plotarray[:, 0], plotarray[:, 1], 'o')
+    plot_array = np.array(initial_array)
+    plt.plot(plot_array[:, 0], plot_array[:, 1], 'o')
     plt.xlabel('Time')
     plt.ylabel("|Acceleration|")
     plt.show()
