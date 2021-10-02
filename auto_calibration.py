@@ -30,17 +30,17 @@ def py_plotter():
 
 
 def non_movement_windows(chunks):
-    max_std = threshold.finder(chunks)
+    max_std = 0.03473971042611789
     nmw_array = [[0, 0, 0]]
+
     for chunk in chunks:
         x_std = pd.DataFrame.std(chunk[0])
         y_std = pd.DataFrame.std(chunk[1])
         z_std = pd.DataFrame.std(chunk[2])
-
         if x_std < max_std and y_std < max_std and z_std < max_std:
+           # print("After checking :" + str(x_std), str(y_std), str(z_std))
             for i in chunk.itertuples():
                 nmw_array.append([i])
-                print(i)
 
     print(nmw_array)
 
