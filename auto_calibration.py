@@ -2,8 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 import numpy as np
-import threshold
-import data
+import nmw_autocalibration
 
 chunks = pd.read_csv('./Data/GT3X+ (01 day)RAW.csv', chunksize=300,
                      header=None)
@@ -30,8 +29,19 @@ def py_plotter():
     plt.show()
 
 
+def slope_finder():
+    length = np.random.random(10)
+    length.sort()
+    time = np.random.random(10)
+    time.sort()
+    slope, intercept = np.polyfit(np.log(length), np.log(time), 1)
+    print(slope)
+    plt.loglog(length, time, '--')
+    plt.show()
+
+
 def non_movement_windows():
-    max_std = threshold.finder(chunks)
+    max_std = 0.03473971042611789
     nmw_array = []
     for chunk in pd.read_csv('./Data/GT3X+ (01 day)RAW.csv', chunksize=300,
                              header=None):
@@ -41,17 +51,14 @@ def non_movement_windows():
         if x_std < max_std and y_std < max_std and z_std < max_std:
             for i in chunk.itertuples():
                 nmw_array.append([i[1], i[2], i[3]])
+
+    # removing values used for initialization
     nmw_array.pop(0)
-    return nmw_array
+
+    # removing all non-zero values used
+    nmw_data = pd.DataFrame(nmw_array, columns=['x', 'y', 'z'])
+    nmw_data = nmw_data.loc[(nmw_data != 0).any(axis=1)]
+    return nmw_data
 
 
-final_array = pd.DataFrame(non_movement_windows(), columns=['x', 'y', 'z'])
-final_array = final_array.loc[(final_array != 0).any(axis=1)]
-print(final_array)
-
-
-def average_calibration_error():
-    # get the mean euclidean norm of nmw
-    # find the difference between mean euclidean norm and 1 g
-    # minimise
-    pass
+nmw_autocalibration.fit(non_movement_windows())
