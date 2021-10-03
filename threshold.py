@@ -21,11 +21,11 @@ def finder(chunks):
 
     # print(*max_threshold)
     threshold = max(max_threshold)
-    print("Maximum threshold is: " + str(threshold))
+    print("Maximum threshold is: " + str(threshold[0]))
     # plot_array = np.array(modarray[1:])
     # plt.plot(plot_array, 'o')
     # plt.xlabel('Time')
     # plt.ylabel('|Acceleration|')
     # plt.show()
 
-    return threshold
+    return float(threshold[0])
