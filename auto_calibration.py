@@ -61,4 +61,10 @@ def non_movement_windows():
     return nmw_data
 
 
-nmw_autocalibration.fit(non_movement_windows())
+coefficients = [0.5313294223962942,
+                0.6198650701454193,
+                0.5774567860341174,
+                - 5.470634997090046e-11,
+                - 7.208322062797556e-11,
+                - 5.924211764451586e-11]
+# nmw_autocalibration.curve_fitting(non_movement_windows())
