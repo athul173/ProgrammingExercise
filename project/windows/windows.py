@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def finder(chunks):
+def threshold(chunks):
     #combinedstdarray = [[0, 0, 0]]
     #modarray = [[0]]
     max_threshold = [[0]]
@@ -29,3 +29,23 @@ def finder(chunks):
     # plt.show()
 
     return float(threshold[0])
+
+
+def nonmovement(chunks):
+    max_std = threshold(chunks)
+    print('Calculating non movement windows')
+    nmw_array = []
+    for chunk in pd.read_csv('./Data/GT3X+ (01 day)RAW.csv', chunksize=300,
+                             header=None):
+        x_std = pd.DataFrame.std(chunk[0])
+        y_std = pd.DataFrame.std(chunk[1])
+        z_std = pd.DataFrame.std(chunk[2])
+        if x_std < max_std and y_std < max_std and z_std < max_std:
+            for i in chunk.itertuples():
+                nmw_array.append([i[1], i[2], i[3]])
+
+    # removing all zero values used
+    print("Removing all zero values")
+    nmw_data = pd.DataFrame(nmw_array, columns=['x', 'y', 'z'])
+    nmw_data = nmw_data.loc[(nmw_data != 0).any(axis=1)]
+    return nmw_data

@@ -145,5 +145,11 @@ def curve_fitting(nmw_data):
     fit_D = parameters[3]
     fit_E = parameters[4]
     fit_F = parameters[5]
+    print("xOffset is : " + str(fit_A))
+    print("yOffset is : " + str(fit_B))
+    print("zOffset is : " + str(fit_C))
+    print("xGain is : " + str(fit_D))
+    print("yGain is : " + str(fit_E))
+    print("zGain is : " + str(fit_F))
     return [fit_A, fit_B, fit_C, fit_D, fit_E, fit_F]
 #
