@@ -1,0 +1,20 @@
+ATHULPROGRAMMINGEXERCISE/
+|-- bin/
+|
+|-- Data/
+|   |-- GT3X+ (01 day)RAW.csv
+|
+|-- project/
+|   |-- calculations/
+|   |   |-- calculations.py
+|   |-- calibration/
+|   |   |-- methods.py
+|   |-- data/
+|   |   |-- data.py
+|   |-- windows/
+|   |   |-- windows.py
+|   |-- main.py
+|
+|—requirements.txt
+|—pyvenv.cfg
+|—Folder Structure.txt
