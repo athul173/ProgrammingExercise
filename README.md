@@ -1,6 +1,6 @@
 # ProgrammingExercise
 
-Python program on the derivation of correction factors for sensor axis-specific calibration error in Autocalibration of accelerometer data studies. (Details and outputs explained in the solution document pdf)
+Python program on the derivation of correction factors for sensor axis-specific calibration error in Autocalibration of accelerometer data studies. (Details and outputs explained in the [solution document](https://github.com/athul173/ProgrammingExercise/blob/master/Solution%20documentation.pdf))
 
 ## Folder Structure
  - /
